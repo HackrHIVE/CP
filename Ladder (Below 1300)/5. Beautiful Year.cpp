@@ -1,17 +1,35 @@
 #include<iostream>
 using namespace std;
-bool checkUnique(int one,int ten,int hundered,int thousand){
-    int arr[10]={0};
+bool checkUnique(int one,int ten,int hundred,int thousand){
+    int arr[11]={0};
     arr[one]++;
     arr[ten]++;
-    arr[hundered]++;
+    arr[hundred]++;
     arr[thousand]++;
-    return (arr[one]>1 || arr[ten]>1 || arr[hundered]>1 || arr[thousand]>1);
+    return !(arr[one]>1 || arr[ten]>1 || arr[hundred]>1 || arr[thousand]>1);
 }
-void incrementYear(int &one,int &ten,int &hundred,int &thousand){
+void incrementYear(int& one,int& ten,int& hundred,int& thousand){
     if(one==9){
-        ten
+        if(ten==9){
+            if(hundred==9){
+                thousand++;
+                hundred = 0;
+                ten = 0;
+                one = 0;
+            }
+            else{
+                ten = 0;
+                one = 0;
+                hundred++;
+            }
+        }
+        else{
+            ten++;
+            one = 0;
+        }
     }
+    else
+        one++;
 }
 int main(){
     string year;
@@ -20,9 +38,11 @@ int main(){
     thousand = int(year[0])-48;
     hundred = int(year[1])-48;
     ten = int(year[2])-48;
-    one = int(year[3])-48+1;
-    while(!checkUnique(one,ten,hundred,thousand)){
-
+    one = int(year[3])-48;
+    do{
+        incrementYear(one,ten,hundred,thousand);
     }
+    while(!checkUnique(one,ten,hundred,thousand));
+    cout<<thousand<<hundred<<ten<<one;
     return 0;
 }
