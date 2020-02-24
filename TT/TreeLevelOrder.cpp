@@ -13,7 +13,7 @@ struct Node{
 class Handler{
   public:
   Node *root;
-  vector< vector<int> > levelO;
+  queue <Node *> levelQueue;
   Handler(){
     root = new Node(1);
     root->left = new Node(2);
@@ -22,34 +22,20 @@ class Handler{
     root->left->right = new Node(5); 
   }
 
-  void LevelOrder(Node *node,int level){
-
-      if(level>=levelO.size()){
-          vector<int> temp;
-          temp.push_back(node->data); 
-          levelO.push_back(temp);
-      }
-      else{
-          vector<int> temp = levelO[level];
-          temp.push_back(node->data); 
-          levelO[level] = temp;
-      }
-      
-      if(node->left!=NULL) LevelOrder(node->left,level+1);
-      if(node->right!=NULL) LevelOrder(node->right,level+1);
-  }
-
-  void printLevelOrder(){
-      for(int i=0;i<levelO.size();i++){
-          for(int j=0;j<levelO[i].size();j++) cout<<levelO[i][j]<<" ";
+  void LevelOrderQueue(Node *node){
+      levelQueue.push(node);
+      while(!levelQueue.empty()){
+	      Node *temp = levelQueue.front();
+          cout<<levelQueue.front()->data<<" ";
+          if(temp->left!=NULL) levelQueue.push(temp->left);
+          if(temp->right!=NULL) levelQueue.push(temp->right);
+          levelQueue.pop();
       }
   }
 };
 
 int main() {
   Handler *x = new Handler();
-  x->LevelOrder(x->root,0);
-  cout<<"Level Order : ";
-  x->printLevelOrder();
+  x->LevelOrderQueue(x->root);
   return 0;
 }

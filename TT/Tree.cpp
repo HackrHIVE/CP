@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stack>
 using namespace std;
 struct Node{
   Node *left,*right;
@@ -13,16 +14,91 @@ struct Node{
 class Handler{
   public:
   Node *root;
+  stack <int> preO;
+  stack <int> postO;
+  queue <Node *> levelQueue;
   queue <int> parentsList1;
   queue <int> parentsList2;
-  vector< vector<int> > levelO;
   bool flag = false;
   Handler(){
-    root = new Node(1);
+  	root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
     root->left->left = new Node(4);
-    root->left->right = new Node(5); 
+    root->left->left->left = new Node(8);
+    root->left->left->right = new Node(10);
+    root->left->right = new Node(5);
+    root->left->right->left = new Node(11);
+    root->left->right->right = new Node(9);
+    root->right->left = new Node(6);
+    root->right->right = new Node(7);
+//    root = new Node(1);
+//    root->left = new Node(2);
+//    root->right = new Node(3);
+//    root->left->left = new Node(4);
+//    root->left->right = new Node(5); 
+  }
+
+  void PreOrderStack(Node *node){
+      if(node==NULL) return;
+
+      PreOrderStack(node->right);
+      PreOrderStack(node->left);
+
+      preO.push(node->data);
+
+      if(node==root){
+          while(!preO.empty()){
+              cout<<preO.top()<<" ";
+              preO.pop();
+          }
+      }
+  }
+  
+  void PostOrderStack(Node *node){
+      if(node==NULL) return;
+
+      postO.push(node->data);
+
+      PostOrderStack(node->right);
+      PostOrderStack(node->left);
+
+      if(node==root){
+          while(!postO.empty()){
+              cout<<postO.top()<<" ";
+              postO.pop();
+          }
+      }
+  }
+
+  void InOrderStack(Node *node){
+      
+      stack <Node *> inO;
+      while(node!=NULL || !inO.empty()){
+      	
+        while(node!=NULL){
+        	inO.push(node);
+//        	if(node->left==NULL)break;
+        	node = node->left;
+        }
+        node = inO.top();
+        inO.pop();
+        cout<<node->data<<" ";
+        node = node->right;
+        
+      }
+      
+  }
+
+  void LevelOrderStack(Node *node){
+      levelQueue.push(node);
+      while(!levelQueue.empty()){
+	      Node *temp = levelQueue.front();
+          cout<<levelQueue.front()->data<<" ";
+          if(temp->left!=NULL) levelQueue.push(temp->left);
+          if(temp->right!=NULL) levelQueue.push(temp->right);
+          levelQueue.pop();
+      }
   }
 
   void PreOrder(Node *node){
@@ -31,37 +107,11 @@ class Handler{
     PreOrder(node->left);
     PreOrder(node->right);
   }
-
   void PostOrder(Node *node){
     if(node == NULL) return;
     PreOrder(node->left);
     PreOrder(node->right);
     cout<<node->data<<" ";
-  }
-
-  void LevelOrder(Node *node,int level){
-//  	cout<<"LevelOrder() : "<<node->data<<"\tlevel : "<<level<<endl;
-//      if(node==NULL) return;
-
-      if(level>=levelO.size()){
-          vector<int> temp;
-          temp.push_back(node->data); 
-          levelO.push_back(temp);
-      }
-      else{
-          vector<int> temp = levelO[level];
-          temp.push_back(node->data); 
-          levelO[level] = temp;
-      }
-      
-      if(node->left!=NULL) LevelOrder(node->left,level+1);
-      if(node->right!=NULL) LevelOrder(node->right,level+1);
-  }
-
-  void printLevelOrder(){
-      for(int i=0;i<levelO.size();i++){
-          for(int j=0;j<levelO[i].size();j++) cout<<levelO[i][j]<<" ";
-      }
   }
 
   bool FindParent(Node *node,Node *f){
@@ -81,7 +131,6 @@ class Handler{
     } 
     return false;
   }
-
   void InOrder(Node *node){
     if(node == NULL) return;
     PreOrder(node->left);
@@ -92,16 +141,21 @@ class Handler{
 
 int main() {
   Handler *x = new Handler();
-//  cout<<"PreOrder : ";
-//  x->PreOrder(x->root);
-//  cout<<"\nPostOrder : ";
-//  x->PostOrder(x->root);
-//  cout<<"\nInOrder : ";
-//  x->InOrder(x->root);
+  cout<<"PreOrder : ";
+  x->PreOrder(x->root);
+  cout<<"\nPostOrder : ";
+  x->PostOrder(x->root);
+  cout<<"\nInOrder : ";
+  x->InOrder(x->root);
   cout<<endl;
-//  x->FindParent(x->root,x->root->left->left);
-  x->LevelOrder(x->root,0);
-  cout<<endl<<"Level Order : ";
-  x->printLevelOrder();
+  x->FindParent(x->root,x->root->left->left);
+  cout<<endl<<"PreOrder using Stack : \n";
+  x->PreOrderStack(x->root);
+  cout<<endl<<"PostOrder using Stack : \n";
+  x->PostOrderStack(x->root);
+  cout<<endl<<"InOrder using Stack : \n";
+  x->InOrderStack(x->root);
+  cout<<"\nLevelOrder using Stack : \n";
+  x->LevelOrderStack(x->root);
   return 0;
 }
