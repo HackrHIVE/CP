@@ -1,0 +1,191 @@
+GRAPHS
+
+Try the following problems :
+Prime Path
+Prayatna PR
+Any Ideas ?
+
+Def : Think graphs as a relation between node , related nodes are connected via edge.
+
+How to store a graph ? ( space complexity )
+
+Adjacency Matrix ( useful in dense graph) using 2-D array of bool/ints.
+Adjacency List (useful in sparse graph) O(min(deg(v),deg(u))) using vector of ints.
+You must know the following terminologies regarding Graphs :
+
+Neighbours
+Node
+Edge
+Degree of vertices
+Directed Graph
+Connected Graph
+Undirected Graph
+Connected components
+Articulation Points
+Articulation Bridges
+Tree [[ connected graph with N nodes and N-1 edges]]
+
+Leaves
+Children
+Parent
+Ancestor
+Rooted Tree
+Binary Tree
+K-ary Tree
+Cycle in graph
+
+Path
+Walk
+Directed Acyclic Graph [[ DAG ]]
+
+Topological Sorting (Not very important, in my opinion)
+Bipartite Graph ( Tree is an example of Bipartite Graph . Interesting Isn’t it.)
+
+Breadth First Search/Traversal (BFS) [[ very important, master it as soon as possible]]
+
+Application : Shortest path in unweighted graphs
+Depth First Search/Traversal (DFS) [[very very important, master it as soon as possible]]
+
+Infinitely many applications, just kidding :P (But Its true, Indeed !)
+Now try the problems given at the beginning !
+
+Practice Problems :
+http://www.codechef.com/JUNE14/problems/DIGJUMP
+http://www.spoj.com/problems/PRATA/
+http://www.spoj.com/problems/ONEZERO/
+http://www.spoj.com/problems/PPATH/
+http://www.spoj.com/problems/PARADOX/
+http://www.spoj.com/problems/HERDING/
+http://www.spoj.com/problems/PT07Z/
+http://www.spoj.com/problems/NICEBTRE/
+http://www.spoj.com/problems/CERC07K/
+http://www.spoj.com/problems/BUGLIFE/
+http://www.spoj.com/problems/COMCB/
+http://www.spoj.com/problems/NAKANJ/
+http://www.codechef.com/IOPC2013/problems/IOPC13N/
+http://www.codechef.com/IOPC2013/problems/IOPC13G/
+http://www.codechef.com/IOPC2013/problems/IOPC13C
+Problem : You are given a Graph. Find the number of connected components in the Graph.
+
+Hint : DFS or BFS.
+
+Problem : You are given a grid with few cells blocked and others open. You are given a cell , call is source, and another cell , call it dest. You can move from some cell u to some another cell v if cell v is open and it is adjacent to cell u. You have to find the shortest path from source to dest.  
+
+Hint : Try to think the grid as a Graph and apply some shortest path algorithm. Which one ? You think !
+
+Problem : You are given a Tree. You need to find two vertices u and v such that distance between them maximum. [[http://www.spoj.com/problems/PT07Z/]]
+
+Hint : Try to do it in O(1) number of DFS or BFS !
+-------------------------------------------------------------------------------------------------------------------
+
+
+
+
+GREEDY ALGORITHMS
+
+Greedy Algorithms are one of the most intuitive algorithms. Whenever we see a problem we first try to apply some greedy strategy to get the answer(we humans are greedy, aren’t we :P ? ).
+
+Read this tutorial for further insight or you can directly attempt the problems most of the greedy approaches are quite simple and easy to understand/formulate.But many times the proving part might be difficult. But you should always try to prove your greedy approach because most the times it happens that you later realise that you solution does not give the optimal answer.
+
+http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=greedyAlg
+
+They are generally used in optimization problems and there exists an optimal substructure to the problem and solutions are generally O(n log n) (sorting) or O(n) (single pass).
+
+Problems List:
+
+http://www.spoj.com/problems/BAISED/
+http://www.spoj.com/problems/BALIFE/
+http://www.spoj.com/problems/GCJ101BB/
+http://www.codechef.com/problems/FGFS
+http://www.codechef.com/problems/KNPSK
+http://www.codechef.com/problems/LEMUSIC
+http://www.spoj.com/problems/ARRANGE/
+http://www.spoj.com/problems/FASHION/
+Q)A thief breaks into a shop and finds there are N items weight of ith item is Wi and cost of ith item is Ci and thief has a bag of which can carry at most W units of weight. Obviously thief wants to have maximum profit . What strategy he should choose if :
+
+Case 1: If he is allowed to take fractional part of items (like assume item to be a bag of rice and you can take whatever fraction of rice you want). [Hint :: greedy])
+
+Case 2:If he cannot break the items in fractional parts. Will now greedy work ? Try to make some test cases for which greedy will fail.
+
+Most of time when greedy fails its the problem can be solved by Dynamic Programming(DP).
+-------------------------------------------------------------------------------------------------------------
+
+
+
+
+DYNAMIC PROGRAMMING [[ DP ]]
+
+In my view this is one the most important topic in competitive programming. The problems are simple and easy to code but hard to master. Practice as many DP problems as much possible.
+
+You must go through this topcoder tutorial and you must try to solve all the problems listed below in this doc.
+
+( These are basic problems and some with few variations that we feel one should know. You must practice other DP problems too)
+
+Problems list:
+
+http://www.spoj.com/problems/COINS/
+Read about Maximum Sum Subarray [I dint find exact question on any online judge as its very very basic]
+http://www.codechef.com/problems/DELISH
+http://www.codechef.com/problems/KSUBSUM/
+Q)Finding NCR [Using above discussed recursion in math section and DP]
+https://projecteuler.net/problem=18
+Q)Given a matrix filled with numbers.You are initially at upper left corner , you have to reach to the lower right corner.In each step you can either go right or down.When ever you go to a cell you points increase by value of that cell.What is the maximim possible points you can gain?
+http://www.codechef.com/JUNE13/problems/LEMOUSE
+http://www.spoj.com/problems/MAXWOODS/
+http://www.spoj.com/problems/EDIST/
+http://www.spoj.com/problems/ADFRUITS/
+http://www.spoj.com/problems/IOIPALIN/
+http://www.codechef.com/problems/PPTEST/
+http://www.codechef.com/problems/MAXPR
+http://www.codechef.com/problems/LEBALONS
+http://www.codechef.com/problems/DBOY/
+http://www.codechef.com/problems/HAREJUMP
+
+-------------------------------------------------------------------------------------------------------------
+
+
+
+Power of BITS
+
+Numbers are stored as binary bits in the memory so bits manipulation are alway faster.
+Bitwise or operator    : |
+Bitwise and operator : &
+Bitwise xor operator  : ^
+Bitwise left shift         : <<
+Bitwise right shift      : >>
+Memset and its uses using function : sizeof()
+Bitmask and use of Bitmask in Dynamic Programming [[subset DP]]
+Some cool Tricks
+
+n = n * 2 :: n = n << 1
+n = n /2  :: n = n >> 1
+checking if n is power of 2 (1,2,4,8…) ::checking !(n & (n-1))
+if x is max power of 2 dividing n, then x = (n & -n)
+Total number of bits which are set in n = __builtin_popcount(n)
+setting xth bit of n  :: n |= (1<<x)
+checking if xth bit of n is set :: checking if  n&(1<<x) is non zero
+Problem : You are given N numbers and a numbers S. Check if there exist some subset of the given numbers which sums equal to S .What if you are asked to compute the number of such subsets ?
+
+Practice :
+http://www.spoj.com/problems/SPCO/
+http://codeforces.com/problemset/problem/114/B
+http://www.spoj.com/problems/CLEANRBT/
+More will be added later
+Read this for further knowledge
+
+http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=bitManipulation
+
+
+
+----------------------------------------------------------------------------------------------------------
+
+
+1. Number theory algorithms: GCD, inverse of the number using extended euler's algorithm, fast power, prime number
+2. Graph algorithms: BFS, DFS, Shortest path algorithms, all pairs shortest path
+3. String pattern matching: KMP (Sometimes, it is efficient for large input size), tries
+4. Segment trees: Many problems in Code chef are related to segment trees.
+5. Data Structures: Array, linked list, Priority Queue using heap, unordered sets, stacks and queues, hash and binary search tree  (Sometimes algorithms are based on them like palindrome check)
+6. Search: Binary search, search using hash map, trie (also on rotated array)
+7. Dynamic programming: Basics of dynamic programming, Matrix chain multiplication, LCS, Edit Distance, 0-1 Knapsack, Bellman ford,
+8. Greedy: Job scheduling, Prims, Kruskal
+9. Sorting: Heap sort, quick sort, merge sort (efficient for linked list too), counting sort and radix sort
