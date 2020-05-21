@@ -1,0 +1,10 @@
+Questions
+
+30th April Assignment
+Q.  RAT in a MAZE.
+    Right and Down move is allowed.
+    1 1 0 0
+    0 1 0 0
+    0 1 1 0
+    0 1 1 1
+Q. Robot Move
