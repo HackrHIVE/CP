@@ -23,7 +23,7 @@ public:
         visited[src] = true;
         for (auto x : graph[src])
         {
-            if (dp[src][x.first] == -1 && !visited[x.first])
+            if (!visited[x.first])
             {
                 int tempCost = dfs(graph, x.first, steps + 1, dst, cost + x.second, K, visited, dp);
                 if (tempCost == -1)
@@ -34,7 +34,6 @@ public:
             else
                 cout << "Skipping " << src << " <-> " << x.first << endl;
         }
-        visited[src] = false;
         cout << "Returning : " << dp[src][dst] << endl;
         return dp[src][dst] + cost;
     }
