@@ -15,7 +15,7 @@ int knapsackWithTabulation(vector<int> wt, vector<int> val, int W, int n)
             else
             {
                 //As item weight is less than or equal to knapsack capacity, we have 2 options , either add this item or skip.
-                dp[i][j] = max(dp[i][j - 1], val[i - 1] + dp[i][j - 1]);
+                dp[i][j] = max(dp[i][j - 1], val[j - 1] + dp[i - wt[j - 1]][j - 1]);
             }
         }
     }
