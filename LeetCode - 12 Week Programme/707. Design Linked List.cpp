@@ -128,8 +128,8 @@ public:
 int main()
 {
     MyLinkedList *obj;
-    vector<string> inFun = {"MyLinkedList", "addAtHead", "addAtTail", "addAtIndex", "get", "deleteAtIndex", "get"};
-    vector<vector<int>> inArg = {{}, {1}, {3}, {1, 2}, {1}, {1}, {1}};
+    vector<string> inFun = {"MyLinkedList", "addAtHead", "addAtIndex", "get", "addAtHead", "addAtTail", "get", "addAtTail", "get", "addAtHead", "get", "addAtHead"};
+    vector<vector<int>> inArg = {{}, {5}, {1, 2}, {1}, {6}, {2}, {3}, {1}, {5}, {2}, {2}, {6}};
     for (int i = 0; i < inFun.size(); i++)
     {
         cout << "i : " << i << " : ";
@@ -161,7 +161,7 @@ int main()
         }
         else if (x.compare("get") == 0)
         {
-            cout << "Calling get(" << inArg[i][0] << ")\t::";
+            cout << "Calling get(" << inArg[i][0] << ") => ";
             cout << obj->get(inArg[i][0]) << endl;
         }
         cout << "Calling printAll()\t";
