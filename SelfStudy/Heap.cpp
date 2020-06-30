@@ -55,9 +55,39 @@ public:
             childRight = (parentIndex * 2) + 2;
         }
     }
-    void heapSort(vector<int> &array)
+    void heapSort(vector<int> &arrX)
     {
-        
+        for (auto x : arrX)
+            insert(x);
+
+        int size = arr.size();
+        while (size > 1)
+        {
+            swap(arr[0], arr[size - 1]);
+            size--;
+            int parentIndex = 0;
+            int childLeft = (parentIndex * 2) + 1;
+            int childRight = (parentIndex * 2) + 2;
+            while (childRight < size)
+            {
+                int minIndex = parentIndex;
+                int childMin = (arr[childLeft] > arr[childRight]) ? childRight : childLeft;
+                if (arr[minIndex] > arr[childMin])
+                    minIndex = childMin;
+                if (minIndex == parentIndex)
+                    break;
+                swap(arr[parentIndex], arr[minIndex]);
+                parentIndex = minIndex;
+                childLeft = (parentIndex * 2) + 1;
+                childRight = (parentIndex * 2) + 2;
+            }
+        }
+    }
+    void printArr()
+    {
+        for (auto x : arr)
+            cout << x << " ";
+        cout << endl;
     }
 };
 int main()
@@ -70,15 +100,15 @@ int main()
     cout << h->getMin() << endl;
     h->removeMin();
     cout << h->getMin() << endl;
-    vector<int> arr = {};
+    vector<int> arr = {5, 6, 15, 7, 11, 8, 20, 9, 10};
     cout << "Before Heap Sort : \n";
     for (auto x : arr)
         cout << x << " ";
     cout << endl;
+    delete h;
+    h = new Heap();
     h->heapSort(arr);
     cout << "After Heap Sort : \n";
-    for (auto x : arr)
-        cout << x << " ";
-    cout << endl;
+    h->printArr();
     return 0;
 }
