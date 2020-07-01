@@ -31,22 +31,9 @@ public:
     }
     int fetch()
     {
-        int parentIndex = 0;
-        int storedVal = arr[parentIndex];
-        int size = 1;
-        int childLeft, childRight;
-        while (size < k)
-        {
-            childLeft = (2 * parentIndex) + 1;
-            childRight = (2 * parentIndex) + 2;
-            int maxChildIndex = (arr[childLeft] > arr[childRight])
-                                    ? childLeft
-                                    : childRight;
-            parentIndex = maxChildIndex;
-            storedVal = arr[parentIndex];
-            size++;
-        }
-        return storedVal;
+        vector<int> temp = arr;
+        int sizeArr = temp.size();
+        
     }
     void printArr()
     {

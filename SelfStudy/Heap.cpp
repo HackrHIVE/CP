@@ -100,7 +100,7 @@ int main()
     cout << h->getMin() << endl;
     h->removeMin();
     cout << h->getMin() << endl;
-    vector<int> arr = {5, 6, 15, 7, 11, 8, 20, 9, 10};
+    vector<int> arr = {5, 6, 15, 7, 11, 8, 16, 13, 20, 9, 10};
     cout << "Before Heap Sort : \n";
     for (auto x : arr)
         cout << x << " ";
