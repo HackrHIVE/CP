@@ -1,4 +1,4 @@
-#include <bits/stdc++.h> 
+#include <bits/stdc++.h>
 #include <unordered_map>
 using namespace std;
 struct TreeNode
@@ -18,7 +18,7 @@ public:
     {
         helper(root, 0);
 
-        vector<vector<int> > out = {};
+        vector<vector<int> > out;
         int size = umap.size();
         for (int key = 0; key < size; key++)
         {
@@ -28,7 +28,8 @@ public:
             else
             {
                 vector<int> pmet;
-                for(int i = temp.size()-1;i>=0;i--) pmet.push_back(temp[i]);
+                for (int i = temp.size() - 1; i >= 0; i--)
+                    pmet.push_back(temp[i]);
                 out.push_back(pmet);
             }
         }
