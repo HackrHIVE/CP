@@ -1,13 +1,15 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 using namespace std;
 int minHL = 16;
 int maxHL = -16;
 int adjuster;
-struct Node{
-    Node *left,*right;
+struct Node
+{
+    Node *left, *right;
     int data;
-    Node(int data){
+    Node(int data)
+    {
         this->data = data;
         this->left = NULL;
         this->right = NULL;
@@ -24,27 +26,36 @@ struct Node{
    \\           \\        //
     21            14   24
 */
-void findMinMaxLevel(Node *root,int Level){
-    if(root==NULL) return;
+void findMinMaxLevel(Node *root, int Level)
+{
+    if (root == NULL)
+        return;
 
-    if(Level<::minHL) ::minHL = Level;
-    if(Level>::maxHL) ::maxHL = Level;
+    if (Level < ::minHL)
+        ::minHL = Level;
+    if (Level > ::maxHL)
+        ::maxHL = Level;
 
-    if(root->left!=NULL){
-        findMinMaxLevel(root->left,Level-1);
+    if (root->left != NULL)
+    {
+        findMinMaxLevel(root->left, Level - 1);
     }
-    if(root->right!=NULL){
-        findMinMaxLevel(root->right,Level+1);
+    if (root->right != NULL)
+    {
+        findMinMaxLevel(root->right, Level + 1);
     }
 }
-void verticalTraversal(Node *root,int Level,vector<int> *arr){
-    if(root==NULL) return;
-	
-    arr[Level+::adjuster].push_back(root->data);
-	verticalTraversal(root->left,Level-1,arr);
-    verticalTraversal(root->right,Level+1,arr);
+void verticalTraversal(Node *root, int Level, vector<int> *arr)
+{
+    if (root == NULL)
+        return;
+
+    arr[Level + ::adjuster].push_back(root->data);
+    verticalTraversal(root->left, Level - 1, arr);
+    verticalTraversal(root->right, Level + 1, arr);
 }
-int main(){
+int main()
+{
     Node *root = new Node(10);
     root->left = new Node(12);
     root->left->right = new Node(20);
@@ -59,15 +70,27 @@ int main(){
     root->right->right = new Node(22);
     root->right->right->right = new Node(25);
     root->right->right->right->left = new Node(24);
-    findMinMaxLevel(root,0);
-    int size = ::maxHL-::minHL;    
+    /*Node *root = new Node(0);
+    root->left = new Node(8);
+    root->right = new Node(1);
+    root->right->left = new Node(3);
+    root->right->left->right = new Node(4);
+    root->right->left->right->right = new Node(7);
+    root->right->right = new Node(2);
+    root->right->right->left = new Node(5);
+    root->right->right->left->left = new Node(6);*/
+    findMinMaxLevel(root, 0);
+    int size = ::maxHL - ::minHL;
     ::adjuster = -::minHL;
-    vector<int> *arr = new vector<int>[size+1];
-    verticalTraversal(root,0,arr);
-    for(int i=0;i<size+1;i++){
-        cout<<"Level "<<i-::adjuster<<" : ";
-        for(int j=0;j<arr[i].size();j++) cout<<arr[i][j]<<" ";
-        cout<<endl;
+    vector<int> *arr = new vector<int>[size + 1];
+    verticalTraversal(root, 0, arr);
+    for (int i = 0; i < size + 1; i++)
+    {
+        cout << "Level " << i - ::adjuster << " : ";
+        for (int j = 0; j < arr[i].size(); j++)
+            cout << arr[i][j] << " ";
+        cout << endl;
     }
+    //Refer Leetcode Vertical Order (Better solution)
     return 0;
 }
