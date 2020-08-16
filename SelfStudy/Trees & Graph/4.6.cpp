@@ -25,7 +25,15 @@ struct Node
 Node *findSuccessor(Node *node)
 {
     if (node->right == NULL)
-        return node->parent->parent;
+    {
+        Node *temp = node->parent;
+        while (temp->right == node)
+        {
+            node = temp;
+            temp = node->parent;
+        }
+        return temp;
+    }
     Node *temp = node->right;
     while (temp->left != NULL)
         temp = temp->left;
@@ -54,7 +62,7 @@ int main()
             q.push(front->right);
         }
     }
-    Node *out = findSuccessor(root->left->right);
-    cout << "In-Order successor to " << root->left->right->data << " is " << out->data << endl;
+    Node *out = findSuccessor(root->left->right->right);
+    cout << "In-Order successor to " << root->left->right->right->data << " is " << out->data << endl;
     return 0;
 }
