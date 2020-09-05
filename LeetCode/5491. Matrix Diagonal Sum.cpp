@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Solution
+{
+public:
+    int diagonalSum(vector<vector<int>> &mat)
+    {
+        int n = mat.size();
+        if (n == 0)
+            return 0;
+        int sum = 0;
+        for (int i = 0; i < n; i++)
+        {
+            sum += mat[i][i];
+            sum += mat[i][n - i - 1];
+        }
+        if (n % 2 != 0)
+            sum -= mat[n / 2][n / 2];
+        return sum;
+    }
+};
+int main()
+{
+    Solution *sol = new Solution();
+    vector<vector<int>> arr;
+    cout << sol->diagonalSum(arr) << endl;
+    return 0;
+}
