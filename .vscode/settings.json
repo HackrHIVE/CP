@@ -92,7 +92,8 @@
         "__tuple": "cpp",
         "ios": "cpp",
         "locale": "cpp",
-        "hashtable": "cpp"
+        "hashtable": "cpp",
+        "__functional_03": "cpp"
     },
     "code-runner.runInTerminal": true,
     "code-runner.executorMap": {
