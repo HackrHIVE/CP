@@ -4,8 +4,8 @@ bool myWay(pair<int, int> x, pair<int, int> y)
 {
     return (x.second < y.second);
 }
-int dfs(vector<int> adj[], int n,vector<bool> &visited){
-
+int dfs(vector<int> adj[], int n, vector<bool> &visited)
+{
 }
 int longestPath(vector<int> adj[], int n)
 {
@@ -14,7 +14,7 @@ int longestPath(vector<int> adj[], int n)
     for (int i = 1; i <= n; i++)
         sortedVertices.push_back({i, adj[i].size()});
     sort(sortedVertices.begin(), sortedVertices.end(), myWay);
-    int minPath = 
+    int minPath =
 }
 int main()
 {

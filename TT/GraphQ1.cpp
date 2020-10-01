@@ -6,7 +6,6 @@ string ltrim(const string &);
 string rtrim(const string &);
 vector<string> split(const string &);
 
-
 /*
  * Complete the 'maxShared' function below.
  *
@@ -23,30 +22,39 @@ vector<string> split(const string &);
  *
  */
 
-int maxShared(int friends_nodes, vector<int> friends_from, vector<int> friends_to, vector<int> friends_weight) {
+int maxShared(int friends_nodes, vector<int> friends_from, vector<int> friends_to, vector<int> friends_weight)
+{
 
-    int **arr = new int*[friends_nodes];
-    for(int i=0;i<friends_nodes;i++){
+    int **arr = new int *[friends_nodes];
+    for (int i = 0; i < friends_nodes; i++)
+    {
         arr[i] = new int[friends_nodes];
     }
     memset(arr, 0, sizeof(arr[0][0]) * friends_nodes * friends_nodes);
-    for(int i=0;i<friends_from.size();i++){
-    	cout<<"i: "<<friends_from[i]-1<<endl<<"j: "<<friends_to[i]-1<<endl;
-        arr[friends_from[i]-1][friends_to[i]-1]++;
+    for (int i = 0; i < friends_from.size(); i++)
+    {
+        cout << "i: " << friends_from[i] - 1 << endl
+             << "j: " << friends_to[i] - 1 << endl;
+        arr[friends_from[i] - 1][friends_to[i] - 1]++;
     }
 
     int max = 0;
-    int maxI,maxJ;
+    int maxI, maxJ;
 
-    for(int i=0;i<friends_nodes;i++){
-        for(int j=0;j<friends_nodes;j++){
-            if(arr[i][j]>max){
+    for (int i = 0; i < friends_nodes; i++)
+    {
+        for (int j = 0; j < friends_nodes; j++)
+        {
+            if (arr[i][j] > max)
+            {
                 max = arr[i][j];
                 maxI = i;
                 maxJ = j;
             }
-            else if(arr[i][j]==max){
-                if(++i*++j>++maxI*++maxJ){
+            else if (arr[i][j] == max)
+            {
+                if (++i * ++j > ++maxI * ++maxJ)
+                {
                     i--;
                     j--;
                     maxI--;
@@ -57,9 +65,8 @@ int maxShared(int friends_nodes, vector<int> friends_from, vector<int> friends_t
             }
         }
     }
-    
-    return (maxI+1)*(maxJ+1);
 
+    return (maxI + 1) * (maxJ + 1);
 
     // int maxI = -1;
     // int maxCount = 0;
@@ -73,7 +80,7 @@ int maxShared(int friends_nodes, vector<int> friends_from, vector<int> friends_t
     //         mappy.insert(make_pair(friends_weight[i],x));
     //         if(maxCount<2){
     //             maxCount = 2;
-                
+
     //             maxI = i;
     //         }
     //         continue;
@@ -87,7 +94,6 @@ int maxShared(int friends_nodes, vector<int> friends_from, vector<int> friends_t
     //         maxI = i;
     //     }
     // }
-
 }
 
 int main()
@@ -106,7 +112,8 @@ int main()
     vector<int> friends_to(friends_edges);
     vector<int> friends_weight(friends_edges);
 
-    for (int i = 0; i < friends_edges; i++) {
+    for (int i = 0; i < friends_edges; i++)
+    {
         string friends_from_to_weight_temp;
         getline(cin, friends_from_to_weight_temp);
 
@@ -130,35 +137,37 @@ int main()
     return 0;
 }
 
-string ltrim(const string &str) {
+string ltrim(const string &str)
+{
     string s(str);
 
     s.erase(
         s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
-    );
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace))));
 
     return s;
 }
 
-string rtrim(const string &str) {
+string rtrim(const string &str)
+{
     string s(str);
 
     s.erase(
         find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-        s.end()
-    );
+        s.end());
 
     return s;
 }
 
-vector<string> split(const string &str) {
+vector<string> split(const string &str)
+{
     vector<string> tokens;
 
     string::size_type start = 0;
     string::size_type end = 0;
 
-    while ((end = str.find(" ", start)) != string::npos) {
+    while ((end = str.find(" ", start)) != string::npos)
+    {
         tokens.push_back(str.substr(start, end - start));
 
         start = end + 1;
@@ -168,4 +177,3 @@ vector<string> split(const string &str) {
 
     return tokens;
 }
-
