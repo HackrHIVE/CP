@@ -7,7 +7,7 @@
  */
 #include <bits/stdc++.h>
 using namespace std;
-int findLongestSubStringWithKDistinctCharacters(string s, int k)
+int findLongestSubStringWithoutRepeatingCharacters(string s)
 {
     unordered_set<char> uset;
     int start = 0;
@@ -21,6 +21,9 @@ int findLongestSubStringWithKDistinctCharacters(string s, int k)
             uset.insert(s[end]);
             end++;
             size = max(size, end - start);
+            for (int i = start; i < end; i++)
+                cout << s[i];
+            cout << endl;
         }
         else
         {
@@ -32,6 +35,6 @@ int findLongestSubStringWithKDistinctCharacters(string s, int k)
 }
 int main()
 {
-    cout << findLongestSubStringWithKDistinctCharacters("abcabcbb", 1) << endl;
+    cout << findLongestSubStringWithoutRepeatingCharacters("abcabcbb") << endl;
     return 0;
 }

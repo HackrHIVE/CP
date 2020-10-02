@@ -10,15 +10,17 @@ int main()
     int k;
     cout << "Enter k(number of rotations) : ";
     cin >> k;
+    int k1 = k;
+    k %= n;
     int *ar = new int[n];
     for (int i = 0; i < n; i++)
     {
         if (i < k)
-            ar[i] = arr[n - k + i];
+            ar[n - k + i] = arr[i];
         else
-            ar[i] = arr[i - k];
+            ar[i - k] = arr[i];
     }
-    cout << "New Array after " << k << " cirular rotations\n";
+    cout << "New Array after " << k1 << " cirular rotations\n";
     for (int i = 0; i < n; i++)
         cout << ar[i] << " ";
     cout << endl;
